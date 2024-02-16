@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="coffee">#AE7575</color>
+    <color name="darkcoffee">#3E3232</color>
+    <color name="pinkcoffee">#8e513d</color>
+    <color name="orange">#ff8900</color>
+    <color name="blackcoffee">#120C08</color>
+
+    <color name="pp5">#111320</color>
+    <color name="pp4">#2D3250</color>
+    <color name="pp3">#424769</color>
+    <color name="pp2">#686C91</color>
+    <color name="pp1">#ECA2FF</color>
+
+    <color name="grey">#575757</color>
+    <color name="lygrey">#B6B6B6</color>
+    <color name="bygrey">#565F71</color>
+    <color name="lywhite">#F1E4C3</color>
+
+
+</resources>

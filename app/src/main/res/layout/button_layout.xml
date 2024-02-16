@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textViewButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingStart="25dp"
+    android:paddingEnd="25dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:text="text"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:background="@drawable/buttonbackground"
+    android:layout_marginStart="10dp"
+    android:textSize="14sp"/>

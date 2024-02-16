@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+    <View
+        android:id="@+id/fadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone" />
+    <!-- User details layout -->
+    <LinearLayout
+        android:id="@+id/userDetailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- User profile image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
+            android:src="@drawable/user_ai"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingStart="16dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- User name -->
+            <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PranshuBuilds"
+                android:textSize="18sp"
+                android:textColor="@color/pp4"
+                android:textStyle="bold"
+                android:layout_gravity="start"
+                android:layout_marginBottom="6dp" />
+
+            <!-- User email -->
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="user@example.com"
+                android:textSize="12sp"
+                android:textColor="@color/pp3"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="start" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal">
+
+
+                <!-- TextView for total stories -->
+                <TextView
+                    android:id="@+id/totalStoriesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stories: 0"
+                    android:textColor="@color/pp3"
+
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/totalLikesTextView"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/pp3"
+                    android:layout_marginStart="4dp"
+
+                    android:layout_height="wrap_content"
+                    android:text="Likes: 0"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+                <!-- Button to add story -->
+                <Button
+                    android:id="@+id/addStoryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Story"
+                    android:layout_gravity="center"
+                    android:elevation="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@android:color/white"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:onClick="onAddStoryButtonClick" />
+                <Button
+                    android:id="@+id/logoutButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textColor="@android:color/white"
+
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- RecyclerView for stories -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewStories"
+        android:paddingTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/userDetailsLayout"
+        app:layout_anchorGravity="bottom"
+        android:paddingBottom="20dp"
+        android:layout_below="@id/userDetailsLayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</RelativeLayout>

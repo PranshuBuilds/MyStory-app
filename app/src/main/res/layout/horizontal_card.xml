@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_horizontal_card.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="20dp"
+    android:outlineAmbientShadowColor="@color/white"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp">
+    <RelativeLayout
+        android:layout_width="240dp"
+        android:layout_height="290dp"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+
+
+            android:background="@drawable/gradient"
+            android:layout_alignParentBottom="true"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:padding="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/white" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Genre • "
+                    android:textSize="12sp"
+                    android:maxLines="@integer/material_motion_duration_long_2"
+                    android:textColor="@color/bygrey"/>
+                <TextView
+                    android:id="@+id/descriptionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+
+                    android:textSize="12sp"
+                    android:maxLines="@integer/material_motion_duration_long_2"
+                    android:textColor="@color/bygrey"/>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Author"
+                android:paddingStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:maxLines="@integer/material_motion_duration_long_1"
+                android:ellipsize="end"
+                android:textColor="@color/bygrey"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

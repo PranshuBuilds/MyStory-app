@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Mystr</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular_stories">Popular Stories</string>
+    <string name="quotes_for_today">Quotes for today</string>
+    <string name="total_likes">Likes: %d</string>
+    <string name="total_stories">Stories: %d</string>
+
+
+    <string-array name="genres">
+        <item>Action</item>
+        <item>Drama</item>
+        <item>Adventure</item>
+        <item>Comedy</item>
+        <item>Horror</item>
+        <item>Emotional</item>
+        <item>Divine</item>
+
+
+    </string-array>
+
+</resources>

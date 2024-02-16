@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollIndicators="none"
+    android:id="@+id/scrollviewstory"
+    android:scrollbars="none"
+    tools:context=".ViewStoryFragment">
+    <View
+        android:id="@+id/fadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="@string/quotes_for_today"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp"
+                android:id="@+id/quotetext"
+                android:paddingTop="10dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/quoteRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quotetext"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quoteRecycler"
+                android:text="Selected for You"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+
+                android:paddingStart="12dp"
+                android:id="@+id/forutext"
+                android:paddingTop="10dp"/>
+
+            <TextView
+                android:id="@+id/popularviewmore"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/quoteRecycler"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="16dp"
+                android:text="see more"
+                android:textColor="@color/lygrey"
+                android:textSize="14sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/stackRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forutext"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:paddingEnd="10dp"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stackRecycler"
+                android:text="Popular stories"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="12dp"
+                android:id="@+id/populartext"
+                android:paddingTop="10dp"/>
+            <!-- RecyclerView for buttons -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewButtons"
+                android:layout_width="match_parent"
+                android:clipToPadding="false"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_below="@id/populartext"
+                android:layout_height="wrap_content"
+                />
+
+
+            <!-- RecyclerView to display the list -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:layout_below="@id/recyclerViewButtons"
+                android:layout_marginTop="16dp"/>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
