@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setItemIconTintList(colorStateList);
         // Load the initial fragment
         loadFragment(new ViewStoryFragment());
-
     }
+
     private boolean onNavigationItemSelected(MenuItem item) {
         Fragment fragment = null;
         switch (item.getItemId()) {

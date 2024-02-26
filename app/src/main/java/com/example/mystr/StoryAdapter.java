@@ -27,8 +27,7 @@ public class StoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int VIEW_TYPE_GRID = 1;
     private static final int VIEW_TYPE_LIST= 2;
 
-    // Your other adapter methods and variables here
-
+    //other adapter methods and variables here
     @Override
     public int getItemViewType(int position) {
         // Return the view type based on the position or any other logic you have

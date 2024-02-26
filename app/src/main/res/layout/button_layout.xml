@@ -11,5 +11,5 @@
     android:gravity="center"
     android:textColor="@color/white"
     android:background="@drawable/buttonbackground"
-    android:layout_marginStart="10dp"
+    android:layout_marginStart="16dp"
     android:textSize="14sp"/>

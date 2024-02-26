@@ -1,12 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
     namespace = "com.example.mystr"
     compileSdk = 34
-
+    buildFeatures.buildConfig = true // to enable custom build config keys
     defaultConfig {
         applicationId = "com.example.mystr"
         minSdk = 29
@@ -47,4 +48,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // add the dependency for the Google AI client SDK for Android
+    implementation("com.google.ai.client.generativeai:generativeai:0.1.2")
+
+    // Required for one-shot operations (to use `ListenableFuture` from Reactive Streams)
+    implementation("com.google.guava:guava:31.0.1-android")
+
+    // Required for streaming operations (to use `Publisher` from Guava Android)
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
 }

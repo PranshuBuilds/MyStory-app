@@ -2,6 +2,7 @@ package com.example.mystr;
 
 import static com.example.mystr.MainActivity.mStoriesRef;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -43,7 +46,7 @@ public class ProfileFragment extends Fragment implements StoryAdapter.OnItemClic
     private Button floatingActionButton;
     private FirebaseAuth mAuth;
     private Button logoutButton;
-
+    Context context = getContext();
     List<Story> stories = new ArrayList<>();
     int totalLikes = 0;
     int totalStories=0;
@@ -68,12 +71,12 @@ public class ProfileFragment extends Fragment implements StoryAdapter.OnItemClic
         floatingActionButton.setOnClickListener(v -> startActivity(new Intent(getContext(), WriteActivity.class)));
 
         mRecyclerView = view.findViewById(R.id.recyclerViewStories);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         // Initialize FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
 
         // Fetch story data from Firebase and populate RecyclerView
-        fetchStories();
+        fetchStories(getCurrentUsername());
 
         // Initialize views
         mTextViewEmail = view.findViewById(R.id.emailTextView);
@@ -91,20 +94,20 @@ public class ProfileFragment extends Fragment implements StoryAdapter.OnItemClic
         return view;
     }
 
-    private void fetchStories() {
-        mStoriesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void fetchStories(String userEmail) {
+
+        Query userStoriesQuery = mStoriesRef.orderByChild("author").equalTo(userEmail);
+        userStoriesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Stories node exists, fetch stories
                 stories = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Story story = snapshot.getValue(Story.class);
-
-                    if (story.getAuthor().equals(getCurrentUsername())) {
                         stories.add(story);
                         totalLikes += story.getLikes();
                         Log.i("message",story.getTitle()+totalLikes);
-                    }
+
                 }
                 totalStories = stories.size();
                 mTotalLikesTextView.setText(getString(R.string.total_likes, totalLikes));

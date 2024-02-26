@@ -36,7 +36,7 @@ import java.util.TimerTask;
 
 public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemClickListener,ButtonAdapter.OnButtonClickListener {
 
-    private FirebaseDBHelper  mFirebaseDBHelper = new FirebaseDBHelper();;
+    private FirebaseDBHelper  mFirebaseDBHelper = new FirebaseDBHelper();
     private RecyclerView stackrecycler;
     private HorizontalCardAdapter stackadapter;
     private List<Story> stackdataList;
@@ -45,6 +45,7 @@ public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemCl
     private int mCurrentPosition = 0;
     private List<Story> mdataList = new ArrayList<>();
     StoryAdapter storyAdapter;
+    RecyclerView recyclerView;
     public ViewStoryFragment() {
         // Required empty public constructor
     }
@@ -121,13 +122,12 @@ public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemCl
 
         // Start automatic scrolling
         startAutomaticScrolling();
-        // Initialize RecyclerView
-        // Initialize RecyclerView
-        RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         // Initialize button and data lists
         List<String> buttonList = new ArrayList<>();
-       buttonList.add("Action");
+        buttonList.add("All");
+        buttonList.add("Action");
         buttonList.add("Drama");
         buttonList.add("Adventure");
         buttonList.add("Comedy");
@@ -140,7 +140,16 @@ public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemCl
         LinearLayoutManager layoutManagerButtons = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewButtons.setLayoutManager(layoutManagerButtons);
         recyclerViewButtons.setAdapter(buttonAdapter);
+// Initialize RecyclerView
+        // Initialize RecyclerView
+        recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        fetchall();
 
+        return root;
+    }
+
+    void fetchall(){
         mStoriesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -161,9 +170,7 @@ public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemCl
             }
         });
 
-        return root;
     }
-
     private void startAutomaticScrolling() {
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -191,15 +198,17 @@ public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemCl
 
     @Override
     public void onButtonClick(int position) {
-
         switch (position) {
             case 0:
-                filterStories("Action");
+                filterStories(" ");
                 break;
             case 1:
+                filterStories("Action");
+                break;
+            case 2:
                 filterStories("shiv");
                 break;
-            case 6:
+            case 7:
                 filterStories("divine");
                 break;
             default:
@@ -209,7 +218,10 @@ public class ViewStoryFragment extends Fragment implements StoryAdapter.OnItemCl
     private void filterStories(String genre) {
         List<Story> filteredList = new ArrayList<>();
         for (Story story : mdataList) {
-            if (story.getType().equalsIgnoreCase(genre)) {
+            if(genre.equalsIgnoreCase(" ")){
+                filteredList.add(story);
+            }
+            else if (story.getType().equalsIgnoreCase(genre)) {
                 filteredList.add(story);
             }
         } storyAdapter.setStories(filteredList);

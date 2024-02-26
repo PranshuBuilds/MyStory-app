@@ -19,7 +19,7 @@
         android:background="@drawable/circle_background"
         android:padding="12dp"
         android:gravity="center"
-        android:hint="Enter title"/>
+        android:hint="Enter Title"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,6 @@
             android:entries="@array/genres" />
     </LinearLayout>
 
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -51,20 +50,36 @@
         android:layout_height="wrap_content"
         android:id="@+id/discription"
         android:layout_weight="1"
+        android:lineSpacingExtra="1px"
         android:gravity="top"
         android:padding="12dp"
         android:background="@drawable/circle_background"
-        android:hint="Write Story"
+        android:hint="Write Your Story"
         android:textColor="@color/lygrey"
         android:textColorHint="@color/pp3"/>
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="UPLOAd"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/pp5"
-        android:id="@+id/uploadbutton"/>
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate story"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/pp5"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/generatebutton"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UPLOAd"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/pp5"
+            android:id="@+id/uploadbutton"/>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

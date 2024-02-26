@@ -50,7 +50,6 @@ public class StoryViewActivity extends AppCompatActivity implements TextToSpeech
 
         setContentView(R.layout.activity_story_view);
         // Initialize views
-
         TextView titleTextView = findViewById(R.id.titleTextView);
         TextView emailTextView = findViewById(R.id.emailTextView);
         TextView likesTextView = findViewById(R.id.likesTextView);
@@ -96,12 +95,10 @@ public class StoryViewActivity extends AppCompatActivity implements TextToSpeech
             }
         });
 
-
         // Share button click listener
         shareButton.setOnClickListener(v -> {
             // Implement share functionality
         });
-
 
         // Speech button click listener
         speakButton.setOnClickListener(v -> {
@@ -124,6 +121,7 @@ public class StoryViewActivity extends AppCompatActivity implements TextToSpeech
                     speakButton.setText("Stop");
                 }}
         });
+//        new TTSUrlExtractor(this).execute();
     }
 
     @Override
@@ -172,13 +170,9 @@ public class StoryViewActivity extends AppCompatActivity implements TextToSpeech
                     Spannable textWithHighlights = new SpannableString(mstory);
                     textWithHighlights.setSpan(new ForegroundColorSpan(Color.WHITE), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
                     storyTextView.setText(textWithHighlights);
-
                 });
-
             }
-
         });
-
     }
 
     public void startClicked(View ignored) {
@@ -195,4 +189,15 @@ public class StoryViewActivity extends AppCompatActivity implements TextToSpeech
         super.onBackPressed();
         finish();
     }
+
+//    @Override
+//    public void onTTSUrlExtracted(String ttsUrl) {
+//        Log.i("url for audio",ttsUrl);
+//    }
+//
+//    @Override
+//    public void onError(Exception e) {
+//        Log.i("url error",e.toString());
+//    }
+
 }

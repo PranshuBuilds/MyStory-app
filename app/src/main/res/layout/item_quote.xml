@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
+    android:layout_marginStart="16dp"
     app:cardCornerRadius="20dp"
     android:background="@drawable/gradient1">
 <LinearLayout
@@ -16,6 +16,7 @@
     <TextView
         android:id="@+id/textViewQuote"
         android:layout_width="wrap_content"
+        android:lineSpacingExtra="8px"
         android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:textSize="14sp" />

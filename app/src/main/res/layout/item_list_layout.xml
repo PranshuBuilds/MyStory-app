@@ -12,10 +12,11 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_margin="10dp"
+            app:cardCornerRadius="14dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="120dp"
+                android:layout_width="110dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center"
                 android:id="@+id/imageviewitem"
                 android:scaleType="centerCrop"/>
@@ -25,8 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linerlay"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="2dp"
             android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
@@ -70,7 +72,7 @@
             android:layout_width="14dp"
             android:layout_height="match_parent"
             android:src="@drawable/baseline_arrow_forward"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             app:tint="@color/white" />
     </LinearLayout>
 

@@ -35,14 +35,13 @@ import java.util.TimerTask;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView titleTextView, descriptionTextView, authorTextView;
+        public TextView titleTextView, descriptionTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
-            authorTextView = itemView.findViewById(R.id.authorTextView);
         }
     }
 
@@ -58,7 +57,6 @@ import java.util.TimerTask;
         Story story = mStories.get(position);
         holder.titleTextView.setText(story.getTitle());
         holder.descriptionTextView.setText(story.getType());
-        holder.authorTextView.setText(story.getAuthor());
 
         // Load image using Picasso
         Picasso.get().load(story.getImageUrl()).placeholder(R.drawable.placeholder).into(holder.imageView);

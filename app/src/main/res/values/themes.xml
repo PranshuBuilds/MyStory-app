@@ -6,7 +6,7 @@
     </style>
 
     <style name="Theme.Mystr" parent="Base.Theme.Mystr" >
-
+        <item name="android:fontFamily">@font/utendoregular</item>
     </style>
 
 </resources>

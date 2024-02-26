@@ -21,7 +21,7 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ViewHolder
 
     private List<String> buttonList;
     private OnButtonClickListener listener;
-    private int selectedItem = -1;
+    private int selectedItem = 0;
     public interface OnButtonClickListener {
         void onButtonClick(int position);
     }

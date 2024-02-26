@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,28 +22,40 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.ai.client.generativeai.GenerativeModel;
+import com.google.ai.client.generativeai.java.GenerativeModelFutures;
+import com.google.ai.client.generativeai.type.Content;
+import com.google.ai.client.generativeai.type.GenerateContentResponse;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.collection.BuildConfig;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class WriteActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 1;
 
-    private EditText titleEditText, descriptionEditText;
+    private EditText titleEditText;
+    private EditText descriptionEditText;
     private ImageView imageView;
     private Uri imageUri;
-    Button saveButton;
+    Button saveButton,generateButton;
     Spinner genreSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +72,15 @@ public class WriteActivity extends AppCompatActivity {
         genreSpinner.setAdapter(adapter);
         imageView = findViewById(R.id.imageselect);
 
-
         saveButton = findViewById(R.id.uploadbutton);
+        generateButton = findViewById(R.id.generatebutton);
 
         imageView.setOnClickListener(v -> pickImageFromGallery());
+        generateButton.setOnClickListener(v ->{
+            generateViaAI("generate full story on genre of divine and fantasy");
+
+        });
+
         saveButton.setOnClickListener(v -> saveStory());
     }
 
@@ -147,6 +165,31 @@ public class WriteActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Failed to save story", Toast.LENGTH_SHORT).show();
                     });
         }
+    }
+    public String generateViaAI(String text){
+        final String[] resultText = new String[1];
+        // For text-only input, use the gemini-pro model
+        GenerativeModel gm = new GenerativeModel("gemini-pro", BuildConfig.apiKey);
+        GenerativeModelFutures model = GenerativeModelFutures.from(gm);
+        Content content = new Content.Builder()
+                .addText(text)
+                .build();
+        Executor executor = Executors.newSingleThreadExecutor();
+        ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
+        Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
+            @Override
+            public void onSuccess(GenerateContentResponse result) {
+                resultText[0] = result.getText();
+                assert resultText[0] != null;
+                Log.i("tag",resultText[0]);
+                descriptionEditText.setText(resultText[0]);
+            }
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        }, executor);
+        return resultText[0];
     }
 }
 
